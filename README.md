@@ -1,165 +1,170 @@
-English | [中文](./README_zh.md)
+# Xpert Plugin: MiniMax AI
 
-[uri_license]: https://www.gnu.org/licenses/agpl-3.0.html
-[uri_license_image]: https://img.shields.io/badge/License-AGPL%20v3-blue.svg
+`@xpert-ai/plugin-minimax` brings MiniMax AI capabilities to [Xpert AI](https://github.com/xpert-ai/xpert) platform using **OpenAI Compatible API**. This plugin provides access to MiniMax's suite of AI models including large language models, text embeddings, and text-to-speech services with full OpenAI compatibility.
 
-<p align="center">
-  <a href="https://xpertai.cn/en/">
-    <img src="docs/images/logo.png" alt="Xpert AI" style="width: 240px; height: auto;">
-  </a>
-</p>
+## Key Features
 
-<p align="center">
-  <a href="https://app.mtda.cloud/">XpertAI Cloud</a> ·
-  <a href="https://xpertai.cn/en/docs/getting-started/community/">Self-hosting</a> ·
-  <a href="https://xpertai.cn/en/docs/">Documentation</a> ·
-  <a href="https://xpertai.cn/en/#connect">Enterprise inquiry</a>
-</p>
+- **🤖 Large Language Models**: Access MiniMax's latest models (MiniMax-M2, MiniMax-M2-Stable) with OpenAI compatible endpoints
+- **🔤 Text Embeddings**: Generate high-quality text embeddings using OpenAI compatible API format
+- **🗣️ Text-to-Speech**: Convert text to natural-sounding speech using MiniMax TTS models
+- **🔄 OpenAI Compatible**: Full compatibility with OpenAI SDK and LangChain ecosystem
+- **📦 Standard Integration**: Fully compatible with Xpert AI's plugin architecture
 
-<p align="center">
-  <em>Open-Source AI Platform for Enterprise Data Analysis, Indicator Management and Agents Orchestration</em>
-</p>
-<p align="center">
-  <a href="https://github.com/xpert-ai/xpert/" target="_blank">
-    <img src="https://visitor-badge.laobi.icu/badge?page_id=meta-d.ocap" alt="Visitors">
-  </a>
-  <a href="https://www.npmjs.com/@metad/ocap-core">
-    <img src="https://img.shields.io/npm/v/@metad/ocap-core.svg?logo=npm&logoColor=fff&label=NPM+package&color=limegreen" alt="ocap on npm" />
-  </a>&nbsp;
-  <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank">
-    <img src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg" alt="License: AGPL v3">
-  </a>
-  <a href="https://gitpod.io/#https://github.com/xpert-ai/xpert" target="_blank">
-    <img src="https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod" alt="Gitpod Ready-to-Code">
-  </a>
-</p>
+## What's New in v0.1.0
 
-**Xpert AI** is an open-source enterprise-level AI system that perfectly integrates two major platforms: agent orchestration and data analysis.
+✅ **Migrated to OpenAI Compatible API**
+- Updated endpoints to `https://api.minimaxi.com/v1` 
+- Simplified credential structure (only `api_key` required)
+- Model name mapping for backward compatibility
+- Improved error handling and validation
 
-## 💡 What's New
-
-**🚀 3.7 Agent Middleware Released!**
-
-XpertAI 3.7 officially launches the Agent Middleware feature, providing developers with fine-grained control and visual orchestration capabilities over agent execution flows through a modular plugin architecture. This feature is compatible with the LangChain ecosystem, supports flexible composition of middleware nodes such as logging, security, and transformation, empowering enterprises to rapidly build observable and extensible agent workflows.
-
-## Agent-Workflow Hybrid Architecture
-
-In today’s rapidly evolving AI landscape, enterprises face a key challenge: **How to balance the creativity of LLMs with the stability of workflows**? Pure agent architectures are flexible but hard to control; traditional workflows are reliable but lack adaptability. Xpert AI’s **Agent-Workflow Hybrid Architecture** is designed to resolve this conflict, enabling AI to have “free will” while adhering to “rule-based order.”
-![agent-workflow-hybrid-architecture](https://github.com/user-attachments/assets/b3b432f9-54ab-4ec1-9fc4-7e46fbfb88ba)
-
-[Blog - Agent-Workflow Hybrid Architecture](https://xpertai.cn/en/blog/agent-workflow-hybrid-architecture)
-
-### [Agent Orchestration Platform](https://xpertai.cn/en/docs/ai/)
-
-By coordinating the collaboration of multiple intelligent agents, Xpert can handle complex tasks. Xpert integrates different types of AI agents through efficient management mechanisms, leveraging their capabilities to address multidimensional problems.
-
-[Xpert Agent](https://github.com/user-attachments/assets/e21f8b35-2f72-4b81-a245-f36759df7c27)
-
-### [Data Analysis Platform](https://xpertai.cn/en/docs/models/)
-
-A cloud-based agile data analysis platform supporting multidimensional modeling, metrics management, and BI visualization. The platform connects to various data sources, enabling efficient and flexible data analysis and visualization, and offers multiple intelligent analysis tools to help enterprises quickly and accurately uncover business value and make operational decisions.
-
-## 🚀 Quick Start
-
-> Before installing Xpert, make sure your machine meets the following minimum system requirements:
->
-> - CPU >= 2 Core
-> - RAM >= 4 GiB
-> - Node.js (ESM and CommonJS) - 20.x, 22.x
-
-</br>
-
-The easiest way to start the Xpert server is through [docker compose](docker/docker-compose.yaml). Before running Xpert with the following commands, make sure that [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) are installed on your machine:
+## Installation
 
 ```bash
-cd xpert
-cd docker
-cp .env.example .env
-docker compose up -d
+npm install @xpert-ai/plugin-minimax
+# or
+pnpm add @xpert-ai/plugin-minimax
 ```
 
-After running, you can access the Xpert dashboard in your browser at [http://localhost/onboarding](http://localhost/onboarding) and start the initialization process.
+> **Peer dependencies**: Ensure your host project already provides `@xpert-ai/plugin-sdk`, `@nestjs/common`, `@nestjs/config`, `@metad/contracts`, `@langchain/openai`, `chalk`, and `zod`. See `package.json` for exact version ranges.
 
-Please check our [Wiki - Development](https://github.com/xpert-ai/xpert/wiki/Development) to get started quickly.
+## Quick Start
 
-## 💻 Demo, Downloads, Testing and Production
+1. **Register** Plugin  
+   Include the package in the `PLUGINS` environment variable when starting Xpert:
 
-### Demo
+   ```sh
+   PLUGINS=@xpert-ai/plugin-minimax
+   ```
 
-Xpert AI Platform Demo at <https://app.mtda.cloud>.
+2. **Configure Credentials**  
+   Add a new model provider with type `minimax` in your Xpert configuration:
 
-Notes:
+   ```json
+   {
+     "type": "minimax",
+     "credentials": {
+       "api_key": "your-minimax-api-key",
+       "base_url": "https://api.minimaxi.com/v1"
+     }
+   }
+   ```
 
-- You can generate samples data in the home dashbaord page.
+3. **Create Models**  
+   Configure individual models using the provider:
 
-### Production (SaaS)
+   ```json
+   {
+     "name": "MiniMax Chat",
+     "model": "MiniMax-M2",
+     "modelProvider": {
+       "type": "minimax",
+       "credentials": {
+         "api_key": "your-api-key"
+       }
+     },
+     "temperature": 0.7,
+     "maxTokens": 2048
+   }
+   ```
 
-Xpert AI Platform SaaS is available at <https://app.mtda.cloud>.
+## Supported Models
 
-Note: it's currently in Alpha version / in testing mode, please use it with caution!
+### Large Language Models (LLM)
+| Model Name | Description | OpenAI Compatible |
+|------------|-------------|-------------------|
+| `MiniMax-M2` | Latest high-performance chat model | ✅ |
+| `MiniMax-M2-Stable` | Stable version of M2 model | ✅ |
+| `abab6.5-chat` | Legacy model (auto-mapped to M2) | ✅ |
+| `abab6.5s-chat` | Legacy streaming model (auto-mapped) | ✅ |
 
-## 🧱 Technology Stack and Requirements
+### Text Embedding Models
+| Model Name | OpenAI Compatible |
+|------------|-------------------|
+| `text-embedding-ada-002` | ✅ |
+| `embo-01` | Auto-mapped to `text-embedding-ada-002` |
 
-- [TypeScript](https://www.typescriptlang.org) language
-- [NodeJs](https://nodejs.org) / [NestJs](https://github.com/nestjs/nest)
-- [Nx](https://nx.dev)
-- [Angular](https://angular.dev)
-- [RxJS](http://reactivex.io/rxjs)
-- [TypeORM](https://github.com/typeorm/typeorm)
-- [Langchain](https://js.langchain.com/)
-- [ECharts](https://echarts.apache.org/)
-- [Java](https://www.java.com/)
-- [Mondrian](https://github.com/pentaho/mondrian)
+### Text-to-Speech Models
+| Model Name | OpenAI Compatible |
+|------------|-------------------|
+| `tts-1` | ✅ |
+| `tts-1-hd` | ✅ |
+| `speech-01` | Auto-mapped to `tts-1` |
+| `speech-01-hd` | Auto-mapped to `tts-1-hd` |
 
-For Production, we recommend:
+## Configuration Options
 
-- [PostgreSQL](https://www.postgresql.org)
-- [PM2](https://github.com/Unitech/pm2)
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| `api_key` | string | Yes | - | MiniMax API key |
+| `base_url` | string | No | `https://api.minimaxi.com/v1` | OpenAI compatible API endpoint |
 
-## 🗺️ Roadmap
+## Migration from Native API
 
-- [ ] **SDK** – streamlines access api of the XpertAI platform.
-  - [ ] [SDK (TypeScript)](https://github.com/xpert-ai/xpert-sdk-js)
-    - [x] digital experts
-    - [x] long-term memory storage
-    - [x] contextual files
-    - [ ] knowledge bases
-  - [ ] [SDK (Python)](https://github.com/xpert-ai/xpert-sdk-py)
+If you were using the previous version with native MiniMax API:
 
-- [x] **Plugins** – extensible plugin system.
-  - [x] Plugins system
-  - [x] Marketplace to showcase the plugins ecosystem.
-  - [ ] Hot-swappable plugin system.
-- [ ] **Chatkit** – front-end component library for embedding digital expert chat dialog.
-- [ ] **Widgets** – UI widgets that let large-model responses drive richer interface experiences.
-- [x] **Agent Middlewares** Plugin-based Agent Middleware.
-- [ ] **Agent Skills** – lightweight agent skills for rapid custom capability integration, offering a quicker alternative to MCP tools.
+**Before (Native API):**
+```json
+{
+  "api_key": "your-key",
+  "base_url": "https://api.minimax.chat/v1", 
+  "group_id": "your-group-id"
+}
+```
 
-## 💌 Contact Us
+**After (OpenAI Compatible API):**
+```json
+{
+  "api_key": "your-key",
+  "base_url": "https://api.minimaxi.com/v1"
+}
+```
 
-- For business inquiries: <mailto:service@xpertai.cn>
-- [Xpert AI Platform @ Twitter](https://x.com/xpertai_cloud)
+### Key Changes:
+- ✅ Removed `group_id` requirement
+- ✅ Updated endpoint to `api.minimaxi.com`
+- ✅ All models now use OpenAI compatible names
+- ✅ Automatic backward compatibility for legacy model names
 
-## 🛡️ License
+## Development
 
-We support the open-source community.
+```bash
+# Install dependencies
+npm install
 
-This software is available under the following licenses:
+# Build plugin
+npm run build
 
-- [Xpert AI Platform Community Edition](https://github.com/xpert-ai/xpert/blob/main/LICENSES.md#xpert-ai-platform-community-edition-license)
-- [Xpert AI Platform Enterprise Edition](https://github.com/xpert-ai/xpert/blob/main/LICENSES.md#xpert-ai-platform-small-business-license)
-- [Xpert AI Platform Enterprise Pro Edition](https://github.com/xpert-ai/xpert/blob/main/LICENSES.md#xpert-ai-platform-enterprise-license)
+# Run linting
+npm run lint
+```
 
-#### Please see [LICENSE](LICENSES.md) for more information on licenses.
+## API Endpoints
 
-## 💪 Thanks to our Contributors
+The plugin uses MiniMax's OpenAI compatible API endpoints:
 
-**Contributors**
+- **Base URL**: `https://api.minimaxi.com/v1`
+- **Chat Completions**: `/chat/completions`
+- **Embeddings**: `/embeddings` 
+- **Audio Speech**: `/audio/speech`
 
-<a href="https://github.com/xpert-ai/xpert/graphs/contributors">
-  <img src="https://contributors-img.web.app/image?repo=xpert-ai/xpert" />
-</a>
+## License
 
-- Please give us :star: on Github, it **helps**!
-- You are more than welcome to submit feature requests in the [Xpert AI repo](https://github.com/xpert-ai/xpert/issues)
-- Pull requests are always welcome! Please base pull requests against the _develop_ branch and follow the [contributing guide](.github/CONTRIBUTING.md).
+This package inherits the repository's [AGPL-3.0 License](../../../LICENSE).
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Build plugin
+npm run build
+
+# Run linting
+npm run lint
+```
+
+## License
+
+This package inherits the repository's [AGPL-3.0 License](../../../LICENSE).
