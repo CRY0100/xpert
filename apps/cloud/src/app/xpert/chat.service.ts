@@ -210,7 +210,7 @@ export abstract class ChatService {
         // Sync feedbacks from remote conversation to local signal
         const feedbacks = this.#conversation()?.feedbacks
         if (feedbacks !== undefined) {
-          this.feedbacks.set(feedbacks ?? {})
+          this.feedbacks.set(feedbacks ?? null)
         }
       },
       { allowSignalWrites: true }
